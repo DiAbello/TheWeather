@@ -5,9 +5,7 @@
       <NuxtPage />
     </NuxtLayout>
   </div>
-
 </template>
-
 
 <script setup lang="ts">
 
