@@ -4,7 +4,7 @@ const store = useStore()
 const { inputValue, handleInput, updatedInputValue, isLoading } = useDebounce(1000)
 
 watch(updatedInputValue, async () => {
-  await store.getCountry(updatedInputValue.value, 5)
+  await store.getCountry(updatedInputValue.value, 1)
 })
 </script>
 

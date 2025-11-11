@@ -11,7 +11,7 @@ export const useStore = defineStore('store', () => {
         const queryUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${city_name},&limit=${limit}&appid=${API_KEY}`
         const response = await axios.get(queryUrl)
         searchedCountry.value = response.data
-        console.log(searchedCountry)
+        console.log(searchedCountry.value[0])
     }
 
     return {
