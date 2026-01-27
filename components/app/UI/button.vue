@@ -1,6 +1,8 @@
 <template>
-  <button class="button d-flex align-center" type="button">
-    <slot></slot>
+  <button
+      class="button d-flex align-center"
+      type="button">
+      <slot></slot>
   </button>
 </template>
 
@@ -17,6 +19,7 @@
   font-weight: bold;
   display: flex;
   gap: 6px;
+
   * {
     background-color: inherit;
     color: inherit;
