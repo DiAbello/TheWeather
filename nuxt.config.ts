@@ -1,6 +1,10 @@
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
+  css: [
+    '@/assets/css/_nullstyle.css',
+    '@/assets/css/darkTheme.css'
+  ],
   devtools: { enabled: true },
   pinia: {
     storesDirs: ['./stores/**']
@@ -17,6 +21,11 @@ export default defineNuxtConfig({
     },
     "@pinia/nuxt"
   ],
+  runtimeConfig: {
+    public: {
+      apiKey: process.env.NUXT_PUBLIC_API_KEY
+    }
+  },
   vite: {
     vue: {
       template: {

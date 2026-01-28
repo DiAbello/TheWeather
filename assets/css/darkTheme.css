@@ -1,0 +1,19 @@
+:root {
+    --DefaultTextColor: #E8E8E8;
+    --DefaultBackgroundColor: #0E0E0E;
+    --Attention: #FC3F1D;
+}
+
+html,
+body,
+#app {
+    background-color: var(--DefaultBackgroundColor) !important;
+    color: var(--DefaultTextColor) !important;
+    a {
+        color: var(--DefaultTextColor);
+    }
+}
+.v-application {
+    background-color: var(--DefaultBackgroundColor) !important;
+    color: var(--DefaultTextColor) !important;
+}

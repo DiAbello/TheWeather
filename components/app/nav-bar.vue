@@ -4,29 +4,47 @@ const store = useStore()
 const { inputValue, handleInput, updatedInputValue, isLoading } = useDebounce(1000)
 
 watch(updatedInputValue, async () => {
-  await store.getCountry(updatedInputValue.value, 1)
+  await store.getCountries(updatedInputValue.value, 1)
 })
 </script>
 
 <template>
-  <VAppBar>
+  <VAppBar class="nav-bar">
     <VContainer>
-      <div class="d-flex justify-center align-center py-2">
-        <VAppBarTitle> The Weather </VAppBarTitle>
-        <VTextField
-            max-width="300px"
-            label="Search..."
-            class="mt-2"
-            :loading="isLoading"
-            append-inner-icon="mdi-magnify"
-            density="compact"
-            variant="solo"
-            hide-details
-            single-line
-            v-model="inputValue"
-            @input="handleInput"
+      <div class="header d-flex justify-space-between align-center ga-2">
+        <VAppBarTitle class="flex-0-0-10">
+          <img src="@/assets/logo.svg" alt="">
+        </VAppBarTitle>
+        <AppUIButton>
+          <VIcon icon="mdi-map-marker"/>
+          <span>
+            Найти меня
+          </span>
+        </AppUIButton>
+        <AppUIInput
+          v-model="inputValue"
+          @input="handleInput"
+          Icon="mdi-magnify"
+          placeholder="Найти место"
+          class="fill"
         />
+        <AppUIButton>
+          <VIcon icon="mdi-star-outline"/>
+          <span>
+            В избранное
+          </span>
+        </AppUIButton>
       </div>
     </VContainer>
   </VAppBar>
 </template>
+
+<style lang="scss" scoped>
+.nav-bar {
+  background-color: #0E0E0E !important;
+  box-shadow: none !important;
+}
+.fill {
+  flex: 1 1 36%;
+}
+</style>
