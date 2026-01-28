@@ -45,6 +45,6 @@ watch(updatedInputValue, async () => {
   box-shadow: none !important;
 }
 .fill {
-  flex: 1 1 29%;
+  flex: 1 1 36%;
 }
 </style>

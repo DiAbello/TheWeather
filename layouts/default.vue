@@ -4,7 +4,7 @@
       <VMain>
         <VContainer>
           <AppNavBar/>
-          <div class="d-flex ga-2">
+          <div class="d-flex ga-4">
             <AppMenu/>
             <slot/>
           </div>

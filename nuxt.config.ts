@@ -21,6 +21,11 @@ export default defineNuxtConfig({
     },
     "@pinia/nuxt"
   ],
+  runtimeConfig: {
+    public: {
+      apiKey: process.env.NUXT_PUBLIC_API_KEY
+    }
+  },
   vite: {
     vue: {
       template: {

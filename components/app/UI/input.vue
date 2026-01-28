@@ -4,7 +4,6 @@
         v-model="inputValue"
         placeholder=""
         class="input"
-
     >
     </input>
     <div class="placeholder">

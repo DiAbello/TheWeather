@@ -1,6 +1,7 @@
 :root {
     --DefaultTextColor: #E8E8E8;
     --DefaultBackgroundColor: #0E0E0E;
+    --Attention: #FC3F1D;
 }
 
 html,
