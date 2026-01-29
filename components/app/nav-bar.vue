@@ -1,10 +1,11 @@
 <script lang="ts" setup>
-
 const store = useStore()
 const { inputValue, handleInput, updatedInputValue, isLoading } = useDebounce(1000)
 
 watch(updatedInputValue, async () => {
-  await store.getCountries(updatedInputValue.value, 1)
+  if(updatedInputValue.value !== '') {
+    await store.getCountries(updatedInputValue.value, 4)
+  }
 })
 </script>
 
@@ -21,13 +22,14 @@ watch(updatedInputValue, async () => {
             Найти меня
           </span>
         </AppUIButton>
-        <AppUIInput
-          v-model="inputValue"
-          @input="handleInput"
-          Icon="mdi-magnify"
-          placeholder="Найти место"
-          class="fill"
-        />
+        <div class="test fill">
+          <AppUIInput
+              v-model="inputValue"
+              @input="handleInput"
+              Icon="mdi-magnify"
+              :placeholder="store.currentBroadcast?.name ? store.currentBroadcast.name : 'Найти'"
+          />
+        </div>
         <AppUIButton>
           <VIcon icon="mdi-star-outline"/>
           <span>
@@ -46,5 +48,7 @@ watch(updatedInputValue, async () => {
 }
 .fill {
   flex: 1 1 36%;
+  position: relative;
 }
+
 </style>

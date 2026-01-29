@@ -1,7 +1,7 @@
 declare global {
     interface SearchedCountries {
         name: string,
-        local_names: [],
+        local_names: any
         lat: number,
         lon: number,
         country: string,

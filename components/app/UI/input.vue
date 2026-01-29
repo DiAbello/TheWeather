@@ -4,18 +4,21 @@
         v-model="inputValue"
         placeholder=""
         class="input"
+        @focus="store.isInputFocused = true"
+        @blur="store.isInputFocused = false"
     >
     </input>
-    <div class="placeholder">
+    <div class="placeholder" v-if="inputValue.length == 0">
       <VIcon class="placeholder__icon" :icon="Icon"/>
       <span class="placeholder__text">
-        {{placeholder}}
+        {{ placeholder }}
       </span>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+const store = useStore()
 const inputValue = ref<string>('')
 defineProps({
   placeholder: {
