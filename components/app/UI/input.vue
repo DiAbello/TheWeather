@@ -1,14 +1,13 @@
 <template>
   <div class="input-area">
     <input
-        v-model="inputValue"
+        v-model="UIStore.inputValue"
         placeholder=""
         class="input"
-        @focus="store.isInputFocused = true"
-        @blur="store.isInputFocused = false"
+        @focus="UIStore.isInputFocused = true"
     >
     </input>
-    <div class="placeholder" v-if="inputValue.length == 0">
+    <div class="placeholder" v-if="UIStore.inputValue.length == 0">
       <VIcon class="placeholder__icon" :icon="Icon"/>
       <span class="placeholder__text">
         {{ placeholder }}
@@ -18,8 +17,8 @@
 </template>
 
 <script setup lang="ts">
-const store = useStore()
-const inputValue = ref<string>('')
+const UIStore = useUIStore()
+
 defineProps({
   placeholder: {
     type: String,
@@ -72,5 +71,4 @@ defineProps({
       }
     }
   }
-
 </style>

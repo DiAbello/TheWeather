@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-const store = useStore()
-const { inputValue, handleInput, updatedInputValue, isLoading } = useDebounce(1000)
+const { loadSearchedCountries, currentBroadcast } = useWeather()
+const UIStore = useUIStore()
 
-watch(updatedInputValue, async () => {
-  if(updatedInputValue.value !== '') {
-    await store.getCountries(updatedInputValue.value, 4)
+watch(() => UIStore.updatedInputValue, async (newValue) => {
+  if(newValue !== '') {
+    await loadSearchedCountries(newValue)
   }
 })
 </script>
@@ -24,10 +24,10 @@ watch(updatedInputValue, async () => {
         </AppUIButton>
         <div class="test fill">
           <AppUIInput
-              v-model="inputValue"
-              @input="handleInput"
+              @input="UIStore.handleInput"
               Icon="mdi-magnify"
-              :placeholder="store.currentBroadcast?.name ? store.currentBroadcast.name : 'Найти'"
+              :placeholder="currentBroadcast?.name ? currentBroadcast.name : 'Найти'"
+              @focus="UIStore.openSearch"
           />
         </div>
         <AppUIButton>
