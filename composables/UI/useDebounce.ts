@@ -2,7 +2,7 @@ interface InputElement extends Event {
     target: HTMLInputElement
 }
 
-export default function useDebounce(delay: number) {
+export const useDebounce = (delay: number) => {
     const inputValue = ref<string>('')
     const isLoading = ref<boolean>(false)
     const updatedInputValue = ref<string>('')
@@ -15,7 +15,6 @@ export default function useDebounce(delay: number) {
             isLoading.value = false
         }, delay)
     }
-
     onUnmounted(() => {
         clearTimeout(timeoutId)
     })

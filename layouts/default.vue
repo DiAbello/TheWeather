@@ -2,11 +2,15 @@
   <div class="wrapper">
     <VApp>
       <VMain>
+        <AppNavBar/>
         <VContainer>
-          <AppNavBar/>
-          <div class="d-flex ga-4">
+          <div class="content d-flex ga-4">
             <AppMenu/>
-            <slot/>
+            <Suspense>
+              <template #default>
+                <slot/>
+              </template>
+            </Suspense>
           </div>
         </VContainer>
       </VMain>
@@ -14,15 +18,14 @@
   </div>
 </template>
 
-<script setup lang="ts">
-
-</script>
-
 <style lang="scss">
 .wrapper {
   min-height: 100%;
   overflow: hidden;
-  background-color: #0E0E0E !important;
-  color: rgba(255, 255, 255, 0.9) !important;
+
+  .content {
+    position: relative;
+    z-index: 1;
+  }
 }
 </style>

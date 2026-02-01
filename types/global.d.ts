@@ -1,7 +1,11 @@
+export {
+
+}
+
 declare global {
     interface SearchedCountries {
         name: string,
-        local_names: [],
+        local_names: any
         lat: number,
         lon: number,
         country: string,
@@ -14,7 +18,7 @@ declare global {
         },
         cod: number,
         coord: {
-            lan: number,
+            lat: number,
             lon: number
         },
         dt: number,
@@ -55,8 +59,8 @@ declare global {
         status: number,
         data: T
     }
-}
-
-export {
-
+    interface SavedLocation {
+        lat: number;
+        lon: number;
+    }
 }
