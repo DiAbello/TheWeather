@@ -5,6 +5,7 @@
         placeholder=""
         class="input"
         @focus="UIStore.isInputFocused = true"
+        ref="inputEl"
     >
     </input>
     <div class="placeholder" v-if="UIStore.inputValue.length == 0">
@@ -29,7 +30,11 @@ defineProps({
     required: false
   }
 })
+const inputEl = ref<HTMLInputElement | null>(null)
 
+defineExpose({
+  inputEl
+})
 </script>
 
 <style scoped lang="scss">

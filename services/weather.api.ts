@@ -24,3 +24,15 @@ export const getCurrentBroadcast = (lat: number, lon: number, API_KEY: string) =
         }
     })
 }
+export const getDailyBroadcast = (lat: number, lon: number, API_KEY: string) => {
+    const BASE_URL = 'https://api.openweathermap.org/data/2.5/forecast'
+    return $fetch<DailyBroadcast>(`${BASE_URL}`, {
+        params: {
+            lat: lat,
+            lon: lon,
+            appid: API_KEY,
+            units: 'metric',
+            lang: 'ru'
+        }
+    })
+}

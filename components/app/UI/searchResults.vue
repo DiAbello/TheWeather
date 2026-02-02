@@ -1,12 +1,14 @@
 <script setup lang="ts">
-const { searchedCountries, setBroadcast } = useWeather()
+import type { CSSProperties } from "vue";
+
+const { searchedCountries } = useWeather()
+const { setCordCookie } = useCordCookie()
 const UIStore = useUIStore()
 
 const dropdownRef = ref<HTMLElement | null>(null)
 
 const onClickOutside = (event: MouseEvent) => {
   if (!dropdownRef.value) return
-
   if (!dropdownRef.value.contains(event.target as Node)) {
     UIStore.closeSearch()
   }
@@ -19,15 +21,31 @@ onBeforeUnmount(() => {
   document.removeEventListener('mousedown', onClickOutside)
 })
 
+const style = computed<CSSProperties>(() => {
+  if (!UIStore.searchInputEl) return {}
+  const rect = UIStore.searchInputEl.getBoundingClientRect()
+  return {
+    position: 'fixed',
+    top: `${rect.bottom}px`,
+    left: `${rect.left}px`,
+    width: `${rect.width}px`,
+    zIndex: 999,
+  }
+})
+
 </script>
 
 <template>
-  <div class="searchingResults result" v-if="UIStore.isInputFocused" ref="dropdownRef">
+  <div
+      class="searchingResults result"
+      v-if="UIStore.isInputFocused && searchedCountries!.length > 0"
+      :style="style"
+  >
     <div class="result"
          v-if="searchedCountries"
          v-for="item in searchedCountries"
          :key="item.lat + item.lon"
-         @click="setBroadcast(item.lat, item.lon); UIStore.closeSearch()"
+         @click="setCordCookie(item.lat, item.lon); UIStore.closeSearch()"
     >
       <div class="result-name">
         {{item.name}}
@@ -37,7 +55,7 @@ onBeforeUnmount(() => {
       </div>
     </div>
     <div class="result" v-else>
-      Ничего не найдено
+      Начни искать и всё появится
     </div>
   </div>
 </template>
