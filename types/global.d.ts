@@ -1,4 +1,4 @@
-import { BroadcastMain, Broadcast, wind, weather, clouds } from '/types'
+import { BroadcastMain, Broadcast, wind, weather, clouds, BroadcastSun } from '/types'
 
 declare global {
     interface SavedLocation {
@@ -47,6 +47,10 @@ declare global {
         cod: string,
         message: number,
         list: Broadcast[]
+    }
+    interface SunTimes {
+        sunrise: string
+        sunset: string
     }
 }
 export {

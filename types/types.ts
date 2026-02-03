@@ -22,7 +22,7 @@ export interface BroadcastMain  {
     temp_max: number,
     temp_min: number
 }
-export interface Broadcast {
+export interface Broadcast extends BroadcastSun{
     clouds: clouds,
     dt: number,
     dt_txt: string,
@@ -34,4 +34,8 @@ export interface Broadcast {
     visibility: number,
     wind: wind,
     weather: weather[]
+}
+export interface BroadcastSun {
+    type: string,
+    time: string
 }

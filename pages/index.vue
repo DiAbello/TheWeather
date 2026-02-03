@@ -2,7 +2,6 @@
 const { currentBroadcast, loadCurrentBroadcast, dailyBroadcast, loadDailyBroadcast } = useWeather()
 const { location } = useLocation()
 
-
 const key = computed(() =>
     location.value ?
         `current:${location.value.lat},${location.value.lon}`
@@ -40,11 +39,12 @@ await useAsyncData(
 <style lang="scss" scoped>
 .main {
   flex: 0 1 67.5%;
+  overflow: hidden;
+  background-color: #161617;
+  border-radius: 16px;
   .main-block {
     padding: 20px 24px;
-    border-radius: 16px;
     width: 100%;
-    background-color: #161617;
     color: #ffffff;
     font-family: system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, sans-serif;
