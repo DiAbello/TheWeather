@@ -1,38 +1,24 @@
-export {
-
-}
+import { BroadcastMain, Broadcast, wind, weather, clouds} from '/types'
 
 declare global {
-    interface SearchedCountries {
+    interface SavedLocation {
+        lat: number;
+        lon: number;
+    }
+    interface SearchedCountries extends SavedLocation{
         name: string,
         local_names: any
-        lat: number,
-        lon: number,
         country: string,
         state: string
     }
     interface CurrentBroadcast {
         base: string,
-        clouds: {
-            all: number
-        },
+        clouds: clouds,
         cod: number,
-        coord: {
-            lat: number,
-            lon: number
-        },
+        coord: SavedLocation
         dt: number,
         id: number,
-        main: {
-            feels_like: number,
-            grnd_level: number,
-            humidity: number,
-            pressure: number,
-            sea_level: number,
-            temp: number,
-            temp_max: number,
-            temp_min: number
-        },
+        main: BroadcastMain
         name: string,
         sys: {
             country: string,
@@ -43,24 +29,30 @@ declare global {
         },
         timezone: number,
         visibility: number,
-        weather: Array<{
-            description: string,
-            icon: string,
+        weather: weather[]
+        wind: wind
+    }
+    interface DailyBroadcast {
+        city: {
+            coord: SavedLocation,
+            country: string,
             id: number,
-            main: string
-        }>,
-        wind: {
-            deg: number,
-            gust: number,
-            speed: number
+            name: string,
+            population: number,
+            sunrise: number,
+            sunset: number,
+            timezone: number,
         }
+        cnt: number,
+        cod: string,
+        message: number,
+        list: Broadcast[]
     }
-    interface ApiResponse<T> {
-        status: number,
-        data: T
+    interface SunTimes {
+        sunrise: string
+        sunset: string
     }
-    interface SavedLocation {
-        lat: number;
-        lon: number;
-    }
+}
+export {
+
 }

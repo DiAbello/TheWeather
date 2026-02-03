@@ -1,6 +1,13 @@
 <script lang="ts" setup>
 const { loadSearchedCountries, currentBroadcast } = useWeather()
 const UIStore = useUIStore()
+const searchInput = ref<{ inputEl: HTMLInputElement | null } | null>(null)
+
+onMounted(() => {
+  if (searchInput.value?.inputEl) {
+    UIStore.setSearchInput(searchInput.value.inputEl)
+  }
+})
 
 watch(() => UIStore.updatedInputValue, async (newValue) => {
   if(newValue !== '') {
@@ -26,6 +33,7 @@ watch(() => UIStore.updatedInputValue, async (newValue) => {
           <AppUIInput
               @input="UIStore.handleInput"
               Icon="mdi-magnify"
+              ref="searchInput"
               :placeholder="currentBroadcast?.name ? currentBroadcast.name : 'Найти'"
               @focus="UIStore.openSearch"
           />
