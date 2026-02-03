@@ -1,4 +1,4 @@
-import { BroadcastMain, Broadcast, wind, weather, clouds, BroadcastSun } from '/types'
+import { BroadcastMain, Broadcast, wind, weather, clouds} from '/types'
 
 declare global {
     interface SavedLocation {
