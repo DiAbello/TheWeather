@@ -1,14 +1,17 @@
 export const getSunTimes = (
     sunriseUnix: number,
     sunsetUnix: number,
-    timezoneOffset: number,
+    timezoneOffsetSec: number,
     locale = 'ru-RU'
 ): SunTimes => {
+    const formatter = new Intl.DateTimeFormat(locale, {
+        hour: '2-digit',
+        minute: '2-digit',
+        hourCycle: 'h23',
+        timeZone: 'UTC',
+    })
     const format = (unix: number) =>
-        new Date((unix + timezoneOffset) * 1000).toLocaleTimeString(locale, {
-            hour: '2-digit',
-            minute: '2-digit',
-        })
+        formatter.format(new Date((unix + timezoneOffsetSec) * 1000))
     return {
         sunrise: format(sunriseUnix),
         sunset: format(sunsetUnix),
