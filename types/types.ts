@@ -12,7 +12,7 @@ export interface weather  {
     id: number,
     main: string
 }
-export interface BroadcastMain  {
+export interface ForecastMain  {
     feels_like: number,
     grnd_level: number,
     humidity: number,
@@ -22,11 +22,11 @@ export interface BroadcastMain  {
     temp_max: number,
     temp_min: number
 }
-export interface Broadcast extends BroadcastSun{
+export interface Forecast extends ForecastSun{
     clouds: clouds,
     dt: number,
     dt_txt: string,
-    main: BroadcastMain,
+    main: ForecastMain,
     pop: number,
     sys: {
         pod: string,
@@ -35,7 +35,7 @@ export interface Broadcast extends BroadcastSun{
     wind: wind,
     weather: weather[]
 }
-export interface BroadcastSun {
+export interface ForecastSun {
     type: string,
     time: string
 }

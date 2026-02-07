@@ -1,13 +1,13 @@
-export const getFormattedDailyBroadcast = (dailyBroadcast: DailyBroadcast) => {
-    let broadcast = dailyBroadcast
-    if (!broadcast || !Array.isArray(broadcast.list)) return null
+export const getFormattedHourlyForecast = (dailyForecast: DailyForecast) => {
+    let forecast = dailyForecast
+    if (!forecast || !Array.isArray(forecast.list)) return null
 
     const obj = getSunTimes(
-        broadcast?.city.sunrise,
-        broadcast.city.sunset,
-        broadcast.city.timezone
+        forecast?.city.sunrise,
+        forecast.city.sunset,
+        forecast.city.timezone
     )
-    const list = broadcast.list
+    const list = forecast.list
     const result: typeof list = []
     for (let i = 0; i < list.length; i++) {
         const curr = list[i]
@@ -32,7 +32,7 @@ export const getFormattedDailyBroadcast = (dailyBroadcast: DailyBroadcast) => {
         }
     }
     return {
-        ...broadcast,
+        ...forecast,
         list: result,
     }
 }

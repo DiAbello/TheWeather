@@ -6,21 +6,9 @@
           Главная
         </RouterLink>
       </li>
-      <li class="list-item"
-          :class="{ selectedPage : route.path === '/precipitation'}"
-      >
-        <RouterLink class="list-link" to="/precipitation">
-          Карта осадков
-        </RouterLink>
-      </li>
-      <li class="list-item" :class="{ selectedPage : route.path === '/monthBroadcast'}">
-        <RouterLink class="list-link" to="/monthBroadcast">
-          Прогноз на месяц
-        </RouterLink>
-      </li>
-      <li class="list-item" :class="{ selectedPage : route.path === '/nearestBroadcast'}">
-        <RouterLink class="list-link" to="/nearestBroadcast">
-          На 10 дней
+      <li class="list-item" :class="{ selectedPage : route.path === '/nearestForecast'}">
+        <RouterLink class="list-link" to="/nearestForecast">
+          На 5 дней
         </RouterLink>
       </li>
     </ul>
@@ -36,7 +24,6 @@ const route = useRoute()
   background-color: #1C1C1C;
   border-radius: 16px;
 }
-
 .menu {
   min-width: 210px;
   .list {
