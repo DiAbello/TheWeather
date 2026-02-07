@@ -2,6 +2,7 @@
 const { loadSearchedCountries, currentForecast } = useWeather()
 const UIStore = useUIStore()
 const searchInput = ref<{ inputEl: HTMLInputElement | null } | null>(null)
+const { toggle } = useThemeProvider()
 
 onMounted(() => {
   if (searchInput.value?.inputEl) {
@@ -39,10 +40,10 @@ watch(() => UIStore.updatedInputValue, async (newValue) => {
           />
         </div>
         <AppUIButton>
-          <VIcon icon="mdi-star-outline"/>
-          <span>
-            В избранное
-          </span>
+          <VIcon
+              icon="mdi-theme-light-dark"
+              @click="toggle"
+          />
         </AppUIButton>
       </div>
     </VContainer>
@@ -51,11 +52,11 @@ watch(() => UIStore.updatedInputValue, async (newValue) => {
 
 <style lang="scss" scoped>
 .nav-bar {
-  background-color: #0E0E0E !important;
+  background-color: var(--primary-background) !important;
   box-shadow: none !important;
 }
 .fill {
-  flex: 1 1 36%;
+  flex: 1 1 45%;
   position: relative;
 }
 

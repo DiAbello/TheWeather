@@ -41,7 +41,7 @@ await useAsyncData(
 .main {
   flex: 0 1 67.5%;
   overflow: hidden;
-  background-color: #161617;
+  background-color: var(--blockBackground);
   border-radius: 16px;
 }
 </style>

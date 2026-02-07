@@ -55,14 +55,14 @@ defineProps<{
     bottom: 10px;
     width: 1px;
     height: 200px;
-    background: rgba(255, 255, 255, .25);
+    background: var(--secondary-text);
   }
 
   &__time {
     font-size: 16px;
     font-weight: 400;
     margin-bottom: -6px;
-    color: #D9D9D9;
+    color: var(--primary-text);
   }
 
   &__icon {
@@ -75,7 +75,7 @@ defineProps<{
   &__temp {
     font-weight: 500;
     font-size: 18px;
-    color: #E8E8E8;
+    color: var(--secondary-text);
   }
 }
 </style>

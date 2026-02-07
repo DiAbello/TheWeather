@@ -4,6 +4,7 @@ defineProps<{
   dailyForecast: FormattedDailyForecast[],
   index: number
 }>()
+const { name } = useThemeProvider()
 </script>
 
 <template>
@@ -38,7 +39,7 @@ defineProps<{
   padding: 5px 8px;
   border-radius: 22px;
   .item-contrast {
-    background-color: #1C1C1E;
+    background-color: var(--accentBackground);
     padding: 10px 16px;
     border-radius: 16px;
     display: flex;
@@ -58,7 +59,7 @@ defineProps<{
     &__day {
       font-size: 14px;
       font-weight: 500;
-      color: #7B7B7C;
+      color: var(--secondary-text);
     }
     &__icon {
       width: 40px;
@@ -66,9 +67,11 @@ defineProps<{
       display: flex;
       align-items: center;
       justify-content: center;
+      margin-bottom: 10px;
       img{
+        border-radius: 50%;
         transform: scale(0.6);
-        filter: brightness(0) invert(1);
+        box-shadow: 0 5px 2px var(--boxShadow);
       }
     }
     &__temp {
@@ -91,15 +94,15 @@ defineProps<{
   }
 }
 .weekend {
-  color: var(--Attention) !important;
+  color: var(--accentText) !important;
 }
 .gradient {
   background: linear-gradient(
           180deg,
-          #1c1c1e 0%,
-          #1c1c1e 35%,
-          #1e1f2b 100%
+          var(--gradient1) 0%,
+          var(--gradient2) 35%,
+          var(--gradient3) 100%
   );
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 </style>

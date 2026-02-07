@@ -41,10 +41,10 @@ defineProps<{
   align-items: center;
   justify-content: center;
   font-size: 22px;
-  color: #fff;
-  background: rgba(30, 30, 30, 0.65);
+  color: var(--primary-text);
+  background: rgba(var(--secondary-text), 0.65);
   backdrop-filter: blur(6px);
-
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.35);
   &:disabled {
     opacity: 0.3;
     pointer-events: none;

@@ -21,7 +21,7 @@ const route = useRoute()
 
 <style scoped lang="scss">
 .selectedPage {
-  background-color: #1C1C1C;
+  background-color: var(--selectedPage);
   border-radius: 16px;
 }
 .menu {
@@ -32,7 +32,7 @@ const route = useRoute()
       font-size: 16px;
       cursor: pointer;
       .list-link:hover {
-        color: var(--Attention) !important;
+        color: var(--accentText) !important;
       }
     }
   }
