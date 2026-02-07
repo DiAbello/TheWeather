@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { loadSearchedCountries, currentBroadcast } = useWeather()
+const { loadSearchedCountries, currentForecast } = useWeather()
 const UIStore = useUIStore()
 const searchInput = ref<{ inputEl: HTMLInputElement | null } | null>(null)
 
@@ -34,7 +34,7 @@ watch(() => UIStore.updatedInputValue, async (newValue) => {
               @input="UIStore.handleInput"
               Icon="mdi-magnify"
               ref="searchInput"
-              :placeholder="currentBroadcast?.name ? currentBroadcast.name : 'Найти'"
+              :placeholder="currentForecast?.name ? currentForecast.name : 'Найти'"
               @focus="UIStore.openSearch"
           />
         </div>

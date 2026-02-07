@@ -1,4 +1,4 @@
-import { BroadcastMain, Broadcast, wind, weather, clouds} from '/types'
+import { ForecastMain, Forecast, wind, weather, clouds} from '/types'
 
 declare global {
     interface SavedLocation {
@@ -11,14 +11,14 @@ declare global {
         country: string,
         state: string
     }
-    interface CurrentBroadcast {
+    interface CurrentForecast {
         base: string,
         clouds: clouds,
         cod: number,
         coord: SavedLocation
         dt: number,
         id: number,
-        main: BroadcastMain
+        main: ForecastMain
         name: string,
         sys: {
             country: string,
@@ -32,7 +32,7 @@ declare global {
         weather: weather[]
         wind: wind
     }
-    interface DailyBroadcast {
+    interface DailyForecast {
         city: {
             coord: SavedLocation,
             country: string,
@@ -46,11 +46,26 @@ declare global {
         cnt: number,
         cod: string,
         message: number,
-        list: Broadcast[]
+        list: Forecast[]
     }
     interface SunTimes {
         sunrise: string
         sunset: string
+    }
+    interface sliderSettings {
+        currentIndex: globalThis.Ref<number>,
+        maxIndex: globalThis.ComputedRef<number>,
+        translateX: globalThis.ComputedRef<number>,
+        next: () => void;
+        prev: () => void;
+        reset: () => void;
+    }
+    interface FormattedDailyForecast {
+        temp_max: number,
+        temp_min: number,
+        dt_txt: string,
+        dt: number,
+        icon: string
     }
 }
 export {

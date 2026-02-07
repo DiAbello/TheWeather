@@ -1,6 +1,6 @@
 <template>
-  <div class="">
-    month broadcast
+  <div>
+    5 days forecast
   </div>
 </template>
 

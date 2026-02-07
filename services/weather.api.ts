@@ -12,9 +12,9 @@ export const getSearchedCountries = (city_name: string, API_KEY: string) => {
         }
     )
 }
-export const getCurrentBroadcast = (lat: number, lon: number, API_KEY: string) => {
+export const getCurrentForecast = (lat: number, lon: number, API_KEY: string) => {
     const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather'
-    return $fetch<CurrentBroadcast>(`${BASE_URL}`, {
+    return $fetch<CurrentForecast>(`${BASE_URL}`, {
         params: {
             lat: lat,
             lon: lon,
@@ -24,9 +24,9 @@ export const getCurrentBroadcast = (lat: number, lon: number, API_KEY: string) =
         }
     })
 }
-export const getDailyBroadcast = (lat: number, lon: number, API_KEY: string) => {
+export const getDailyForecast = (lat: number, lon: number, API_KEY: string) => {
     const BASE_URL = 'https://api.openweathermap.org/data/2.5/forecast'
-    return $fetch<DailyBroadcast>(`${BASE_URL}`, {
+    return $fetch<DailyForecast>(`${BASE_URL}`, {
         params: {
             lat: lat,
             lon: lon,

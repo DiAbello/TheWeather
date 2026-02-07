@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineProps<{
-  currentBroadcast: CurrentBroadcast
+  currentForecast: CurrentForecast
 }>()
 </script>
 
@@ -8,7 +8,7 @@ defineProps<{
   <div class="weather">
     <div class="weather__temperature">
             <span class="weather__temperature-value">
-              {{ Math.round(currentBroadcast?.main.temp) }}
+              {{ Math.round(currentForecast?.main.temp) }}
             </span>
       <span class="weather__temperature-degree">°</span>
     </div>
@@ -17,15 +17,15 @@ defineProps<{
         <div class="weather__title">
           <img
               class="weather__icon"
-              :src="`http://openweathermap.org/img/wn/${currentBroadcast?.weather[0].icon}@2x.png`"
+              :src="`http://openweathermap.org/img/wn/${currentForecast?.weather[0].icon}@2x.png`"
               alt=""
           />
           <span class="weather__title-text">
-              {{ currentBroadcast?.weather[0].description.charAt(0).toUpperCase() + currentBroadcast?.weather[0].description.slice(1) }}
+              {{ currentForecast?.weather[0].description.charAt(0).toUpperCase() + currentForecast?.weather[0].description.slice(1) }}
             </span>
         </div>
         <div class="weather__subtitle">
-          Ощущается как {{ Math.round(currentBroadcast?.main.feels_like) }}°
+          Ощущается как {{ Math.round(currentForecast?.main.feels_like) }}°
         </div>
       </div>
       <div class="weather__stats">
@@ -43,8 +43,8 @@ defineProps<{
           </div>
           <span class="wind__value">
             {{
-              Math.round(currentBroadcast?.wind.speed * 10) / 10
-            }} м/с, {{ getWindDirection(currentBroadcast?.wind.deg) }}
+              Math.round(currentForecast?.wind.speed * 10) / 10
+            }} м/с, {{ getWindDirection(currentForecast?.wind.deg) }}
           </span>
         </div>
         <div class="pressure d-flex align-center ga-1">
@@ -64,7 +64,7 @@ defineProps<{
                     d="M3.30664 17.3291L5.23849 16.8115" stroke="#ffffff" stroke-linecap="round"></path></g></svg>
               </span>
           <span class="pressure__value">
-                {{ currentBroadcast?.main.pressure }}
+                {{ currentForecast?.main.pressure }}
               </span>
         </div>
         <div class="humidity d-flex align-center ga-1">
@@ -79,7 +79,7 @@ defineProps<{
                   stroke="#ffffff" stroke-linecap="round"></path> </g></svg>
             </span>
           <span class="humidity__value">
-              {{ currentBroadcast?.main.humidity }}%
+              {{ currentForecast?.main.humidity }}%
             </span>
         </div>
       </div>
@@ -93,6 +93,11 @@ defineProps<{
   display: flex;
   align-items: center;
   gap: 20px;
+  padding: 20px 24px;
+  width: 100%;
+  color: #ffffff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+  "Segoe UI", Roboto, sans-serif;
   &__temperature {
     display: flex;
     align-items: flex-start;

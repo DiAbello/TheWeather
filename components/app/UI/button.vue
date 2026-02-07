@@ -12,7 +12,7 @@
 
 <style scoped lang="scss">
 .button {
-  background-color: #1D1D1D;
+  background-color: #161617;
   color: #FFFFFFE6;
   padding: 12px 16px;
   border-radius: 32px;

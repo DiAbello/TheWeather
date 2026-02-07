@@ -1,3 +1,5 @@
+<script setup lang="ts">
+</script>
 <template>
   <div class="wrapper">
     <VApp>
@@ -22,7 +24,6 @@
 .wrapper {
   min-height: 100%;
   overflow: hidden;
-
   .content {
     position: relative;
     z-index: 1;
