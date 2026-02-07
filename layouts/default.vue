@@ -1,7 +1,8 @@
 <script setup lang="ts">
+const { name } = useThemeProvider()
 </script>
 <template>
-  <div class="wrapper">
+  <div class="wrapper" :data-theme="name">
     <VApp>
       <VMain>
         <AppNavBar/>
@@ -24,6 +25,7 @@
 .wrapper {
   min-height: 100%;
   overflow: hidden;
+  transition: all 0.4s;
   .content {
     position: relative;
     z-index: 1;

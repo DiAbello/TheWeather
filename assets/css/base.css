@@ -1,0 +1,45 @@
+[data-theme='light'] {
+    --primary-text: #262633;
+    --secondary-text: #85889E;
+    --primary-background: #F7F8FA;
+    --blockBackground: #FFFFFF;
+    --inputBorder: #b3b3b3;
+    --accentText: #FC3F1D;
+    --selectedPage: #EFF0F5;
+    --btnOhHover: #dfdfe4;
+    --btnBackground: #F0F0F5;
+    --accentBackground: #f6f6f6;
+    --gradient1: #f4f4f4;
+    --gradient2: #f1f1f1;
+    --gradient3: #dddddd;
+    --boxShadow: rgba(81, 81, 81, 0.37);
+}
+
+[data-theme='dark'] {
+    --primary-text: #E8E8E8;
+    --secondary-text: #999999;
+    --primary-background: #0E0E0E;
+    --blockBackground: #161617;
+    --inputBorder: #404040;
+    --accentText: #FC3F1D;
+    --selectedPage: #1C1C1C;
+    --btnOhHover: #323232;
+    --btnBackground: #1D1D1D;
+    --accentBackground: #1C1C1E;
+    --gradient1: #1c1c1e;
+    --gradient2: #1c1c1e;
+    --gradient3: #1e1f2b;
+    --boxShadow: rgba(227, 227, 227, 0.18);
+}
+
+html,
+body,
+#app,
+.v-application{
+    background-color: var(--primary-background) !important;
+    color: var(--primary-text) !important;
+    a {
+        color: var(--primary-text);
+    }
+}
+

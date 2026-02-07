@@ -95,7 +95,7 @@ defineProps<{
   gap: 20px;
   padding: 20px 24px;
   width: 100%;
-  color: #ffffff;
+  color: var(--primary-text);
   font-family: system-ui, -apple-system, BlinkMacSystemFont,
   "Segoe UI", Roboto, sans-serif;
   &__temperature {
@@ -116,12 +116,10 @@ defineProps<{
       margin-left: 2px;
     }
   }
-
   &__content {
     display: flex;
     flex-direction: column;
   }
-
   &__title {
     display: flex;
     align-items: center;
@@ -136,23 +134,19 @@ defineProps<{
       letter-spacing: -0.01em;
     }
   }
-
   &__icon {
     width: 20px;
     height: 20px;
     transform-origin: center;
     transform: scale(3.2);
-    filter: brightness(0) invert(1);
   }
-
   &__subtitle {
     font-weight: 500;
     margin-top: 10px;
     font-size: 14px;
     line-height: 18px;
-    color: #999999;
+    color: var(--secondary-text);
   }
-
   &__stats {
     display: flex;
     align-items: center;
@@ -160,11 +154,13 @@ defineProps<{
     font-size: 15px;
     margin-left: auto;
     font-weight: 500;
-    color: #999999;
-
+    color: var(--secondary-text);
     .stats-icon {
       width: 22px;
       height: 22px;
+    }
+    .stats-icon path {
+      stroke: var(--primary-text);
     }
   }
 }

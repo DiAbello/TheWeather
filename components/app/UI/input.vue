@@ -42,14 +42,14 @@ defineExpose({
   position: relative;
   width: 100%;
   .input {
-    background-color: #161617;
+    background-color: var(--blockBackground);
     padding: 12px 15px;
     border-radius: 32px;
-    border: 1px solid #161617;
-    color: var(--DefaultTextColor);
+    border: 1px solid var(--blockBackground);
+    color: var(--primary-text);
     width: 100%;
     &:hover {
-      border: 1px solid #404040;
+      border: 1px solid var(--inputBorder);
     }
     &:focus + .placeholder {
         display: none;
@@ -62,7 +62,7 @@ defineExpose({
       justify-content: center;
       align-items: center;
       gap: 4px;
-      color: var(--DefaultTextColor);
+      color: var(--primary-text);
       position: absolute;
       top: 35%;
       left: 39%;

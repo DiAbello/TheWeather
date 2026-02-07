@@ -4,7 +4,7 @@ export default defineNuxtConfig({
     compatibilityDate: '2024-11-01',
     css: [
         '@/assets/css/_nullstyle.css',
-        '@/assets/css/darkTheme.css'
+        '@/assets/css/base.css'
     ],
     devtools: {enabled: true},
     pinia: {

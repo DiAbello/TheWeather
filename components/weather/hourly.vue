@@ -30,7 +30,7 @@ const slider = useHorizontalSlider({
 .hourly {
   padding: 20px 24px;
   width: 100%;
-  color: #ffffff;
+  color: var(--primary-text);
   font-family: system-ui, -apple-system, BlinkMacSystemFont,
   "Segoe UI", Roboto, sans-serif;
 }

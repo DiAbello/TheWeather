@@ -12,20 +12,19 @@
 
 <style scoped lang="scss">
 .button {
-  background-color: #161617;
-  color: #FFFFFFE6;
+  background-color: var(--btnBackground);
+  color: var(--primary-text);
   padding: 12px 16px;
   border-radius: 32px;
   font-weight: bold;
   display: flex;
   gap: 6px;
-
   * {
     background-color: inherit;
     color: inherit;
   }
   &:hover {
-    background-color: #323232;
+    background-color: var(--btnOhHover);
   }
 }
 </style>

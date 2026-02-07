@@ -68,10 +68,10 @@ const style = computed<CSSProperties>(() => {
   top: 14%;
   left: 35%;
   z-index: 999;
-  color: var(--DefaultTextColor);
+  color: var(--primary-text);
   border-radius: 12px;
   padding: 16px;
-  background-color: #161617;
+  background-color: var(--blockBackground);
   margin-top: 10px;
   .result {
     user-select: none;
@@ -79,7 +79,7 @@ const style = computed<CSSProperties>(() => {
     border-radius: 10px;
     cursor: pointer;
     &:hover {
-      background-color: #3c3b3b;
+      background-color: var(--btnOhHover);
     }
     &:not(:last-child) {
       margin-bottom: 12px;
@@ -89,7 +89,7 @@ const style = computed<CSSProperties>(() => {
       margin-bottom: 3px;
     }
     &-state {
-      color: #999999;
+      color: var(--secondary-text);
     }
   }
 }

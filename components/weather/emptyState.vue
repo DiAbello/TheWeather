@@ -26,7 +26,7 @@
           #1a1a1c,
           #121214
   );
-  color: var(--DefaultTextColor);
+  color: var(--primary-text);
   display: flex;
   align-items: center;
 

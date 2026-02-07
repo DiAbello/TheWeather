@@ -101,9 +101,9 @@ const { pointsMax, pointsMin, pathMax, pathMin } = useDailyGraph(
   opacity: .95;
 }
 .line--max { stroke: #4C8DFF; }
-.line--min { stroke: rgba(255,255,255,.22); }
+.line--min { stroke: rgba(142, 139, 139, 0.22); }
 .dots--max circle { fill: #4C8DFF; }
-.dots--min circle { fill: rgba(255,255,255,.22); }
+.dots--min circle { fill: rgba(108, 106, 106, 0.22); }
 circle.active {
   filter: drop-shadow(0 0 10px rgba(76,141,255,.55));
 }
