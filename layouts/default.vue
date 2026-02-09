@@ -1,5 +1,12 @@
 <script setup lang="ts">
 const { name } = useThemeProvider()
+const route = useRoute()
+const { currentForecast } = useWeather()
+useHead(() => ({
+  title: (
+      currentForecast?.value?.name ? `${currentForecast.value?.name}` + ' - ' + `${route.meta.title}` : 'Погода'
+  ) as string
+}))
 </script>
 <template>
   <div class="wrapper" :data-theme="name">
