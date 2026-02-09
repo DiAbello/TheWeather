@@ -2,7 +2,7 @@
 const { loadSearchedCountries, currentForecast } = useWeather()
 const UIStore = useUIStore()
 const searchInput = ref<{ inputEl: HTMLInputElement | null } | null>(null)
-const { toggle } = useThemeProvider()
+const { name, toggle } = useThemeProvider()
 
 onMounted(() => {
   if (searchInput.value?.inputEl) {
@@ -22,7 +22,8 @@ watch(() => UIStore.updatedInputValue, async (newValue) => {
     <VContainer>
       <div class="header d-flex justify-space-between align-center ga-2">
         <VAppBarTitle class="flex-0-0-10">
-          <img src="@/assets/logo.svg" alt="">
+          <img v-if="name === 'dark'" src="../../assets/logo-dark.svg" alt="Dark logo">
+          <img v-if="name === 'light'" src="../../assets/logo-light.svg" alt="Light logo">
         </VAppBarTitle>
         <AppUIButton>
           <VIcon icon="mdi-map-marker"/>

@@ -2,6 +2,10 @@
 const { currentForecast, loadCurrentForecast, dailyForecast, loadDailyForecast } = useWeather()
 const { location } = useLocation()
 
+definePageMeta({
+  title: 'Главная'
+})
+
 const key = computed(() =>
     location.value ?
         `current:${location.value.lat},${location.value.lon}`
@@ -10,8 +14,15 @@ const key = computed(() =>
 await useAsyncData(
     key.value,
     async () => {
-      await loadCurrentForecast(location.value!.lat, location.value!.lon)
-      await loadDailyForecast(location.value!.lat, location.value!.lon)
+      if (!location.value) return null
+      await Promise.all([
+        loadCurrentForecast(location.value.lat, location.value.lon),
+        loadDailyForecast(location.value.lat, location.value.lon),
+      ])
+      return {
+        current: currentForecast.value,
+        daily: dailyForecast.value,
+      }
     },
     {
       immediate: !!location.value,

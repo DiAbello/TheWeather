@@ -4,7 +4,6 @@ defineProps<{
   dailyForecast: FormattedDailyForecast[],
   index: number
 }>()
-const { name } = useThemeProvider()
 </script>
 
 <template>
