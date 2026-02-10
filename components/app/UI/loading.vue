@@ -1,0 +1,17 @@
+<template>
+  <VIcon class="loading" icon="mdi-loading"/>
+</template>
+
+<style scoped>
+.loading {
+  animation: loading 1.5s linear infinite;
+}
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+</style>

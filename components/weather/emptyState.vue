@@ -23,8 +23,8 @@
   padding: 32px 36px;
   background: linear-gradient(
           135deg,
-          #1a1a1c,
-          #121214
+          var(--gradient2),
+          var(--gradient3)
   );
   color: var(--primary-text);
   display: flex;
@@ -57,11 +57,12 @@
       font-size: 22px;
       font-weight: 600;
       margin-bottom: 8px;
+      color: var(--primary-text);
     }
 
     p {
       font-size: 14px;
-      color: #a1a1a1;
+      color: var(--secondary-text);
       line-height: 1.4;
       max-width: 420px;
     }
