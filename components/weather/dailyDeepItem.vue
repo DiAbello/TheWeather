@@ -1,16 +1,36 @@
 <script setup lang="ts">
-import type {Forecast} from "~/types/types";
+import type { Forecast } from "~/types/types";
 const DayParts = [
   'Утром',
   'Днём',
   'Вечером',
   'Ночью',
 ]
-defineProps<{
+const props = defineProps<{
   weatherItem: Forecast[],
   dailyForecast: DailyForecast,
   index: number
 }>()
+
+const sun = computed(() => {
+  if (!props.dailyForecast?.city) return null
+  return getSunTimes(
+      props.dailyForecast.city.sunrise,
+      props.dailyForecast.city.sunset,
+      props.dailyForecast.city.timezone
+  )
+})
+
+const daylightText = computed(() => {
+  if (!sun.value) return ''
+  const sr = toMinutes(sun.value.sunrise)
+  const ss = toMinutes(sun.value.sunset)
+  let diff = ss - sr
+  if (diff < 0) diff += 24 * 60
+  const h = Math.floor(diff / 60)
+  const m = diff % 60
+  return `${h} ч ${m} мин`
+})
 </script>
 
 <template>
@@ -18,7 +38,11 @@ defineProps<{
     <div class="daily__left">
       <div class="wrow wrow--head">
         <div class="wcell wcell--day">
-          <div class="dayTitle">{{ getWeekday(weatherItem[0].dt_txt) }}</div>
+          <div class="dayTitle"
+               :class="{weekend: getWeekday(weatherItem[0].dt_txt) === 'Сб' || getWeekday(weatherItem[0].dt_txt) === 'Вс'}"
+          >
+            {{ getWeekday(weatherItem[0].dt_txt) + ', ' + getDateMonth(weatherItem[0].dt_txt)}}
+          </div>
         </div>
         <div class="wcell headText">ощущается</div>
         <div class="wcell headText">ветер, м/с</div>
@@ -44,7 +68,7 @@ defineProps<{
         </div>
         <div class="wcell value">{{ Math.round(item.main.feels_like) }}°</div>
         <div class="wcell value">
-          {{ item.wind.speed }},
+          {{ Math.round(item.wind.speed)}},
           <span class="windDirection">{{getWindDirection(item.wind.deg)}}</span>
         </div>
         <div class="wcell value">{{ item.main.humidity }}%</div>
@@ -52,13 +76,41 @@ defineProps<{
       </div>
     </div>
     <div class="daily__divider"></div>
-    <div class="daily__right">
-      right
+    <div class="daily__right right">
+      <div class="right__content">
+        <div class="right__suntimes suntimes">
+          <div class="suntimes__sunrise">
+            <span>{{sun?.sunrise}}</span>
+            <span>Восход</span>
+          </div>
+          <div class="suntimes__icon">
+            <VIcon
+                icon="mdi-white-balance-sunny"
+                color="#FFC023"
+            />
+          </div>
+          <div class="suntimes__sunset">
+            <span>{{sun?.sunset}}</span>
+            <span>Закат</span>
+          </div>
+        </div>
+        <div class="right__daylight daylight">
+          <div class="daylight__text">
+            Световой день
+          </div>
+          <div class="daylight__value">
+            {{ daylightText }}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
+.weekend {
+  color: var(--accentText) !important;
+}
 .daily__item {
   width: 100%;
   border-radius: 24px;
@@ -74,6 +126,62 @@ defineProps<{
   .daily__right {
     flex: 0 0 30%;
     opacity: 0.9;
+  }
+  .right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &__content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      &__suntimes {
+
+      }
+      .suntimes {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        &__sunrise {
+          color: var(--primary-text);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          font-weight: 600;
+          span:nth-child(2) {
+            color: var(--secondary-text);
+          }
+        }
+        &__icon {
+          font-size: 32px;
+        }
+        &__sunset {
+          color: var(--primary-text);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          font-weight: 600;
+          span:nth-child(2) {
+            color: var(--secondary-text);
+          }
+        }
+      }
+      &__daylight {
+
+      }
+      .daylight {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        &__text {
+          color: var(--secondary-text);
+        }
+        &__value {
+          color: var(--primary-text);
+        }
+      }
+    }
   }
   .daily__divider {
     width: 1px;

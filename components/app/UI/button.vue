@@ -1,13 +1,17 @@
 <template>
   <button
       class="button d-flex align-center"
-      type="button">
+      type="button"
+      :style="{ minWidth: `${minWidth}px` }"
+  >
       <slot></slot>
   </button>
 </template>
 
 <script setup lang="ts">
-
+defineProps<{
+  minWidth?: number
+}>()
 </script>
 
 <style scoped lang="scss">
@@ -18,6 +22,8 @@
   border-radius: 32px;
   font-weight: bold;
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 6px;
   * {
     background-color: inherit;

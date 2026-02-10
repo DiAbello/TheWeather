@@ -1,6 +1,14 @@
 import vuetify, {transformAssetUrls} from 'vite-plugin-vuetify'
 
 export default defineNuxtConfig({
+    app: {
+        head: {
+            link: [
+                { rel: 'icon', type: 'image/png', href: '/favicon.png', sizes: '512x512' },
+                { rel: 'icon', type: 'image/png', href: '/favicon-32.png', sizes: '32x32' },
+            ],
+        },
+    },
     compatibilityDate: '2024-11-01',
     css: [
         '@/assets/css/_nullstyle.css',

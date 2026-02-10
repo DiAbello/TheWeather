@@ -1,4 +1,4 @@
-import {getCurrentForecast, getDailyForecast, getSearchedCountries} from "~/services/weather.api";
+import { getCurrentForecast, getDailyForecast, getSearchedCountries } from "~/services/weather.api";
 
 export const useWeather = () => {
     const store = useWeatherStore()
@@ -23,6 +23,12 @@ export const useWeather = () => {
         store.setDailyForecast(data)
         return data
     }
+    const loadByCoords = async (lat: number, lon: number) => {
+        await Promise.all([
+            loadCurrentForecast(lat, lon),
+            loadDailyForecast(lat, lon),
+        ])
+    }
 
     return {
         searchedCountries,
@@ -30,6 +36,7 @@ export const useWeather = () => {
         dailyForecast,
         loadCurrentForecast,
         loadSearchedCountries,
-        loadDailyForecast
+        loadDailyForecast,
+        loadByCoords
     }
 }

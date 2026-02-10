@@ -2,6 +2,7 @@ export const useLocation = () => {
     const location = useCookie<SavedLocation | null>('tw_location', {
         sameSite: 'lax',
         default: () => null,
+        secure: true
     })
     const setLocation = (loc: SavedLocation) => {
         location.value = loc

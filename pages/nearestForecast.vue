@@ -24,6 +24,7 @@ await useAsyncData(
     },
     {
       immediate: !!location.value,
+      watch: [location]
     }
 )
 </script>
