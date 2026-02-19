@@ -4,7 +4,6 @@ export const useCordCookie = () => {
     const { loadCurrentForecast, loadDailyForecast} = useWeather()
 
     const setCordCookie = async (lat: number, lon: number) => {
-        const UIStore = useUIStore()
         setLocation({
             lat: lat,
             lon: lon
