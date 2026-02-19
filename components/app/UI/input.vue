@@ -1,14 +1,44 @@
+<script setup lang="ts">
+const UIStore = useUIStore()
+const emit = defineEmits<{
+  (e: 'update:modelValue', v: string): void
+}>()
+
+const props = defineProps<{
+  modelValue: string,
+  placeholder?: string
+  Icon?: string
+  id: string
+}>()
+const inputEl = ref<HTMLInputElement | null>(null)
+const { register, unregister } = useInputRegistry()
+
+const clear = () => emit('update:modelValue', '')
+const set = (v: string) => emit('update:modelValue', v)
+
+onMounted(() => {
+    register(props.id, { clear, set, focus })
+})
+onUnmounted(() => {
+  unregister(props.id)
+})
+defineExpose({
+  inputEl
+})
+</script>
+
 <template>
   <div class="input-area">
     <input
-        v-model="UIStore.inputValue"
+        :value="modelValue"
         placeholder=""
         class="input"
-        @focus="UIStore.isInputFocused = true"
         ref="inputEl"
+        @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
+        @focus="UIStore.openSearch"
     >
     </input>
-    <div class="placeholder" v-if="UIStore.inputValue.length == 0">
+    <div class="placeholder" v-if="modelValue.length == 0">
       <VIcon class="placeholder__icon" :icon="Icon"/>
       <span class="placeholder__text">
         {{ placeholder }}
@@ -17,24 +47,6 @@
   </div>
 </template>
 
-<script setup lang="ts">
-const UIStore = useUIStore()
-
-defineProps({
-  placeholder: {
-    type: String,
-    required: true
-  },
-  Icon: {
-    type: String,
-    required: false
-  }
-})
-const inputEl = ref<HTMLInputElement | null>(null)
-defineExpose({
-  inputEl
-})
-</script>
 
 <style scoped lang="scss">
 .input-area {

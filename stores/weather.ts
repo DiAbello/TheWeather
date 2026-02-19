@@ -1,4 +1,3 @@
-
 export const useWeatherStore = defineStore('weather', () => {
 
     const currentForecast = ref<CurrentForecast | null>(null)

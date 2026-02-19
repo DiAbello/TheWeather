@@ -12,7 +12,6 @@ export const useCordCookie = () => {
         await loadCurrentForecast(lat, lon)
         await loadDailyForecast(lat, lon)
         store.clearSearchedCountries()
-        UIStore.inputValue = ''
     }
     return {
         setCordCookie

@@ -31,7 +31,8 @@ await useAsyncData(
 
 <template>
   <div class="daily">
-    <div class="daily__header">
+    <WeatherEmptyState v-if="!dailyForecast"/>
+    <div class="daily__header" v-else>
       Погода на 5 дней
     </div>
     <WeatherDailyDeep

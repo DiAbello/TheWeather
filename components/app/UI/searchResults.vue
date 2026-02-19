@@ -4,6 +4,7 @@ import type { CSSProperties } from "vue";
 const { searchedCountries } = useWeather()
 const { setCordCookie } = useCordCookie()
 const UIStore = useUIStore()
+const { clear } = useInputRegistry()
 
 const dropdownRef = ref<HTMLElement | null>(null)
 
@@ -32,7 +33,6 @@ const style = computed<CSSProperties>(() => {
     zIndex: 999,
   }
 })
-
 </script>
 
 <template>
@@ -45,7 +45,7 @@ const style = computed<CSSProperties>(() => {
          v-if="searchedCountries"
          v-for="item in searchedCountries"
          :key="item.lat + item.lon"
-         @click="setCordCookie(item.lat, item.lon); UIStore.closeSearch()"
+         @click="setCordCookie(item.lat, item.lon); UIStore.closeSearch(); clear('search-input')"
     >
       <div class="result-name">
         {{item.name}}
