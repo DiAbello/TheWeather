@@ -2,7 +2,7 @@
   <button
       class="button d-flex align-center"
       type="button"
-      :style="{ minWidth: `${minWidth}px` }"
+      :style="{ minWidth: `${minWidth}px`, maxWidth: maxWidth ? `${maxWidth}px` : ''}"
   >
       <slot></slot>
   </button>
@@ -10,7 +10,8 @@
 
 <script setup lang="ts">
 defineProps<{
-  minWidth?: number
+  minWidth?: number,
+  maxWidth?: number,
 }>()
 </script>
 

@@ -6,6 +6,7 @@ const UIStore = useUIStore()
 const searchInput = ref<{ inputEl: HTMLInputElement | null } | null>(null)
 const { name, toggle } = useThemeProvider()
 const { getCoords, pending } = useGeolocation()
+const { inputValue, updatedInputValue, handleInput} = useDebounce(1000)
 
 const onFindMe = async () => {
   const res = await getCoords()
@@ -16,14 +17,13 @@ const onFindMe = async () => {
   setLocation(res.coords)
   await loadByCoords(res.coords.lat, res.coords.lon)
 }
-
 onMounted(() => {
   if (searchInput.value?.inputEl) {
     UIStore.setSearchInput(searchInput.value.inputEl)
   }
 })
 
-watch(() => UIStore.updatedInputValue, async (newValue) => {
+watch(() => updatedInputValue.value, async (newValue) => {
   if(newValue !== '') {
     await loadSearchedCountries(newValue)
   }
@@ -48,15 +48,18 @@ watch(() => UIStore.updatedInputValue, async (newValue) => {
           </span>
         </AppUIButton>
         <div class="input">
-          <AppUIInput
-              @input="UIStore.handleInput"
-              Icon="mdi-magnify"
-              ref="searchInput"
-              :placeholder="currentForecast?.name ? currentForecast.name : 'Найти'"
-              @focus="UIStore.openSearch"
-          />
+          <ClientOnly>
+            <AppUIInput
+                id="search-input"
+                v-model="inputValue"
+                @input="handleInput"
+                Icon="mdi-magnify"
+                ref="searchInput"
+                :placeholder="currentForecast?.name ? currentForecast.name : 'Найти'"
+            />
+          </ClientOnly>
         </div>
-        <AppUIButton class="d">
+        <AppUIButton>
           <VIcon
               icon="mdi-theme-light-dark"
               @click="toggle"

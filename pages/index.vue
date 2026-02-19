@@ -11,6 +11,7 @@ const key = computed(() =>
         `current:${location.value.lat},${location.value.lon}`
         : 'current:none'
 )
+
 await useAsyncData(
     key.value,
     async () => {

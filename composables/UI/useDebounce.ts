@@ -22,6 +22,6 @@ export const useDebounce = (delay: number) => {
         inputValue,
         handleInput,
         updatedInputValue,
-        isLoading
+        isLoading,
     }
 }

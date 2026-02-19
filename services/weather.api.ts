@@ -1,4 +1,4 @@
-import {$fetch} from "ofetch";
+import { $fetch } from "ofetch";
 
 export const getSearchedCountries = (city_name: string, API_KEY: string) => {
     const BASE_URL = 'https://api.openweathermap.org/geo/1.0/direct'

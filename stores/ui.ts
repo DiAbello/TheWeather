@@ -11,17 +11,13 @@ export const useUIStore = defineStore('UI', () => {
         const setSearchInput = (el: HTMLElement) => {
             searchInputEl.value = el
         }
-        const { inputValue, updatedInputValue, handleInput } = useDebounce(1000)
         return {
             isInputFocused,
-            updatedInputValue,
-            inputValue,
             searchInputEl,
 
             openSearch,
             closeSearch,
             setSearchInput,
-            handleInput,
         }
     }
 )
