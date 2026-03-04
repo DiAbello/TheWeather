@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useUIStore } from "~/src/shared/components/input/store";
+import { useInputRegistry } from "~/src/shared/components/input/lib/useInputRegistry";
 
 const UIStore = useUIStore()
 const emit = defineEmits<{
@@ -38,8 +39,7 @@ defineExpose({
         ref="inputEl"
         @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
         @focus="UIStore.openSearch"
-    >
-    </input>
+    />
     <div class="placeholder" v-if="modelValue.length == 0">
       <VIcon class="placeholder__icon" :icon="Icon"/>
       <span class="placeholder__text">
