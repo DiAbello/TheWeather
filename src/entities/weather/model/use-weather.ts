@@ -1,4 +1,4 @@
-import { getCurrentForecast, getDailyForecast, getSearchedCountries } from "~/src/entities/weather/API/weather.api";
+import { getCurrentForecast, getDailyForecast } from "~/src/entities/weather/API/weather.api";
 import { useWeatherStore } from "~/src/entities/weather/model/store";
 
 export const useWeather = () => {

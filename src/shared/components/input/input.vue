@@ -40,7 +40,7 @@ defineExpose({
         @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
         @focus="UIStore.openSearch"
     >
-    </input>
+    />
     <div class="placeholder" v-if="modelValue.length == 0">
       <VIcon class="placeholder__icon" :icon="Icon"/>
       <span class="placeholder__text">
