@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useUIStore } from "~/src/shared/components/input/store";
+import { useInputRegistry } from "~/src/shared/components/input/lib/useInputRegistry";
 
 const UIStore = useUIStore()
 const emit = defineEmits<{

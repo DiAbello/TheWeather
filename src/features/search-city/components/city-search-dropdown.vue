@@ -2,6 +2,7 @@
 import { useCitySearch } from "~/src/features/search-city/model/use-city-search";
 import { useUIStore } from "~/src/shared/components/input/store";
 import { useSelectCity } from '~/src/features/select-city/model/use-select-city'
+import { useInputRegistry } from "~/src/shared/components/input/lib/useInputRegistry";
 
 const { searchedCountries } = useCitySearch()
 const { setCordCookie } = useSelectCity()
