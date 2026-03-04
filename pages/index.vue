@@ -1,17 +1,18 @@
 <script lang="ts" setup>
+import { useLocation } from "~/src/entities/location/model/use-location";
+import { useWeather } from "~/src/entities/weather/model/use-weather";
+import HomePage from "~/src/pages/home/components/home-page.vue";
 const { currentForecast, loadCurrentForecast, dailyForecast, loadDailyForecast } = useWeather()
 const { location } = useLocation()
 
 definePageMeta({
   title: 'Главная'
 })
-
 const key = computed(() =>
     location.value ?
         `current:${location.value.lat},${location.value.lon}`
         : 'current:none'
 )
-
 await useAsyncData(
     key.value,
     async () => {
@@ -33,28 +34,5 @@ await useAsyncData(
 </script>
 
 <template>
-  <div class="main">
-    <WeatherEmptyState v-if="!location"/>
-    <WeatherHeader
-        v-if="currentForecast"
-        :currentForecast="currentForecast"
-    />
-    <WeatherHourly
-      v-if="dailyForecast"
-      :dailyForecast="dailyForecast"
-    />
-    <WeatherDaily
-      v-if="dailyForecast"
-      :dailyForecast="dailyForecast"
-    />
-  </div>
+  <HomePage/>
 </template>
-
-<style lang="scss" scoped>
-.main {
-  flex: 0 1 67.5%;
-  overflow: hidden;
-  background-color: var(--blockBackground);
-  border-radius: 16px;
-}
-</style>

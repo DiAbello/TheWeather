@@ -1,6 +1,5 @@
 <template>
     <NuxtLoadingIndicator />
-    <AppUISearchResults/>
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
