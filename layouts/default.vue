@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import { useWeather } from "~/src/entities/weather/model/use-weather";
+import AppHeader from "~/src/widgets/app-header/app-header.vue";
+import AppSidebar from "~/src/widgets/app-sidebar/app-sidebar.vue";
+import { useThemeProvider } from "~/src/app/providers/theme";
+
 const { name } = useThemeProvider()
 const route = useRoute()
 const { currentForecast } = useWeather()
@@ -12,10 +17,10 @@ useHead(() => ({
   <div class="wrapper" :data-theme="name">
     <VApp>
       <VMain>
-        <AppNavBar/>
+        <AppHeader/>
         <VContainer>
           <div class="content d-flex ga-4">
-            <AppMenu/>
+            <AppSidebar/>
             <Suspense>
               <template #default>
                 <slot/>
