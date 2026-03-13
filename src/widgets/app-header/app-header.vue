@@ -1,22 +1,22 @@
 <script lang="ts" setup>
-import ToggleThemeButton from "~/src/features/toggle-theme-button/components/toggle-theme-button.vue";
-import DetectLocationButton from "~/src/features/detect-location/components/detect-location-button.vue";
+import ToggleThemeButton from '~/src/features/toggle-theme-button/components/toggle-theme-button.vue'
+import DetectLocationButton from '~/src/features/detect-location/components/detect-location-button.vue'
 import Logo from '~/src/shared/components/logo/logo.vue'
-import CitySearchInput from "~/src/features/search-city/components/city-search-input.vue";
-import CitySearchDropdown from "~/src/features/search-city/components/city-search-dropdown.vue";
+import CitySearchInput from '~/src/features/search-city/components/city-search-input.vue'
+import CitySearchDropdown from '~/src/features/search-city/components/city-search-dropdown.vue'
 </script>
 
 <template>
   <VAppBar class="nav-bar">
     <VContainer>
       <div class="header d-flex align-center ga-2">
-        <Logo/>
-        <DetectLocationButton/>
+        <Logo />
+        <DetectLocationButton />
         <div class="input">
-          <CitySearchInput/>
-          <CitySearchDropdown/>
+          <CitySearchInput />
+          <CitySearchDropdown />
         </div>
-        <ToggleThemeButton/>
+        <ToggleThemeButton />
       </div>
     </VContainer>
   </VAppBar>

@@ -1,5 +1,8 @@
 <template>
-  <VIcon class="loading" icon="mdi-loading"/>
+  <VIcon
+    class="loading"
+    icon="mdi-loading"
+  />
 </template>
 
 <style scoped>

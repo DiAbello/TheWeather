@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useCitySearch } from "~/src/features/search-city/model/use-city-search";
-import { useUIStore } from "~/src/shared/components/input/store";
+import { useCitySearch } from '~/src/features/search-city/model/use-city-search'
+import { useUIStore } from '~/src/shared/components/input/store'
 import { useSelectCity } from '~/src/features/select-city/model/use-select-city'
-import { useInputRegistry } from "~/src/shared/components/input/lib/useInputRegistry";
+import { useInputRegistry } from '~/src/shared/components/input/lib/useInputRegistry'
 
 const { searchedCountries } = useCitySearch()
 const { setCordCookie } = useSelectCity()
@@ -24,25 +24,25 @@ onMounted(() => {
 onBeforeUnmount(() => {
   document.removeEventListener('mousedown', onClickOutside)
 })
-
 </script>
 
 <template>
   <div
-      class="searchingResults result"
-      v-if="UIStore.isInputFocused && searchedCountries!.length > 0"
-      ref="dropdownRef"
+    v-if="UIStore.isInputFocused && searchedCountries!.length > 0"
+    ref="dropdownRef"
+    class="searchingResults result"
   >
-    <div class="result"
-         v-for="item in searchedCountries"
-         :key="item.lat + item.lon"
-         @click="setCordCookie(item.lat, item.lon); UIStore.closeSearch(); clear('search-input')"
+    <div
+      v-for="item in searchedCountries"
+      :key="item.lat + item.lon"
+      class="result"
+      @click="setCordCookie(item.lat, item.lon); UIStore.closeSearch(); clear('search-input')"
     >
       <div class="result-name">
-        {{item.name}}
+        {{ item.name }}
       </div>
       <div class="result-state">
-        {{item.state}}
+        {{ item.state }}
       </div>
     </div>
   </div>

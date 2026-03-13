@@ -1,23 +1,35 @@
+<script lang="ts" setup>
+const route = useRoute()
+</script>
+
 <template>
   <div class="menu">
     <ul class="menu__list list">
-      <li class="list-item" :class="{ selectedPage : route.path === '/'}">
-        <RouterLink class="list-link" to="/">
+      <li
+        class="list-item"
+        :class="{ selectedPage: route.path === '/' }"
+      >
+        <RouterLink
+          class="list-link"
+          to="/"
+        >
           Главная
         </RouterLink>
       </li>
-      <li class="list-item" :class="{ selectedPage : route.path === '/nearestForecast'}">
-        <RouterLink class="list-link" to="/nearestForecast">
+      <li
+        class="list-item"
+        :class="{ selectedPage: route.path === '/nearestForecast' }"
+      >
+        <RouterLink
+          class="list-link"
+          to="/nearestForecast"
+        >
           На 5 дней
         </RouterLink>
       </li>
     </ul>
   </div>
 </template>
-
-<script lang="ts" setup>
-const route = useRoute()
-</script>
 
 <style scoped lang="scss">
 .selectedPage {

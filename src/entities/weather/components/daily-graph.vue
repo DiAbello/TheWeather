@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useDailyGraph } from "~/src/entities/weather/lib/graph/use-daily-graph";
+import { useDailyGraph } from '~/src/entities/weather/lib/graph/use-daily-graph'
 
 const props = defineProps<{
   dailyForecast: FormattedDailyForecast[]
@@ -30,36 +30,53 @@ watch(() => props.xCenters, calcWidth)
 watch(() => props.dailyForecast, calcWidth, { deep: true })
 
 const { pointsMax, pointsMin, pathMax, pathMin } = useDailyGraph(
-    () => props.dailyForecast,
-    () => props.xCenters,
-    { yTop: 15, yBottom: 125, tension: 0.23 }
+  () => props.dailyForecast,
+  () => props.xCenters,
+  { yTop: 15, yBottom: 125, tension: 0.23 },
 )
 </script>
 
 <template>
-  <div class="graph-wrap" ref="graphRef">
-    <div class="day-pill">День</div>
-    <svg class="daily-graph" :width="width" height="150">
-      <path class="line line--min" :d="pathMin" fill="none" />
-      <path class="line line--max" :d="pathMax" fill="none" />
+  <div
+    ref="graphRef"
+    class="graph-wrap"
+  >
+    <div class="day-pill">
+      День
+    </div>
+    <svg
+      class="daily-graph"
+      :width="width"
+      height="150"
+    >
+      <path
+        class="line line--min"
+        :d="pathMin"
+        fill="none"
+      />
+      <path
+        class="line line--max"
+        :d="pathMax"
+        fill="none"
+      />
       <g class="dots dots--min">
         <circle
-            v-for="(p, i) in pointsMin"
-            :key="`min-${i}`"
-            :cx="p.x"
-            :cy="p.y"
-            :r="i === activeIndex ? 7 : 6"
-            :class="{ active: i === activeIndex }"
+          v-for="(p, i) in pointsMin"
+          :key="`min-${i}`"
+          :cx="p.x"
+          :cy="p.y"
+          :r="i === activeIndex ? 7 : 6"
+          :class="{ active: i === activeIndex }"
         />
       </g>
       <g class="dots dots--max">
         <circle
-            v-for="(p, i) in pointsMax"
-            :key="`max-${i}`"
-            :cx="p.x"
-            :cy="p.y"
-            :r="i === activeIndex ? 7 : 6"
-            :class="{ active: i === activeIndex }"
+          v-for="(p, i) in pointsMax"
+          :key="`max-${i}`"
+          :cx="p.x"
+          :cy="p.y"
+          :r="i === activeIndex ? 7 : 6"
+          :class="{ active: i === activeIndex }"
         />
       </g>
     </svg>

@@ -1,29 +1,28 @@
 <script setup lang="ts">
-import { toMinutes } from "~/src/shared/utils/date-time/to-minutes";
-import type { Forecast } from "~/types/types";
-import { getWeekday } from "~/src/shared/utils/date-time/get-weekday";
-import { getDateMonth } from "~/src/shared/utils/date-time/get-date-month";
-import { getSunTimes } from "~/src/entities/weather/lib/weatherMetric/get-sun-times";
-import { getWindDirection } from "~/src/entities/weather/lib/weatherMetric/get-wind-direction";
+import { toMinutes } from '~/src/shared/utils/date-time/to-minutes'
+import type { Forecast } from '~/types/types'
+import { getWeekday } from '~/src/shared/utils/date-time/get-weekday'
+import { getDateMonth } from '~/src/shared/utils/date-time/get-date-month'
+import { getSunTimes } from '~/src/entities/weather/lib/weatherMetric/get-sun-times'
+import { getWindDirection } from '~/src/entities/weather/lib/weatherMetric/get-wind-direction'
 
+const props = defineProps<{
+  weatherItem: Forecast[]
+  dailyForecast: DailyForecast
+  index: number
+}>()
 const DayParts = [
   'Утром',
   'Днём',
   'Вечером',
   'Ночью',
 ]
-const props = defineProps<{
-  weatherItem: Forecast[],
-  dailyForecast: DailyForecast,
-  index: number
-}>()
-
 const sun = computed(() => {
   if (!props.dailyForecast?.city) return null
   return getSunTimes(
-      props.dailyForecast.city.sunrise,
-      props.dailyForecast.city.sunset,
-      props.dailyForecast.city.timezone
+    props.dailyForecast.city.sunrise,
+    props.dailyForecast.city.sunset,
+    props.dailyForecast.city.timezone,
   )
 })
 
@@ -44,59 +43,77 @@ const daylightText = computed(() => {
     <div class="daily__left">
       <div class="wrow wrow--head">
         <div class="wcell wcell--day">
-          <div class="dayTitle"
-               :class="{weekend: getWeekday(weatherItem[0].dt_txt) === 'Сб' || getWeekday(weatherItem[0].dt_txt) === 'Вс'}"
+          <div
+            class="dayTitle"
+            :class="{ weekend: getWeekday(weatherItem[0].dt_txt) === 'Сб' || getWeekday(weatherItem[0].dt_txt) === 'Вс' }"
           >
-            {{ getWeekday(weatherItem[0].dt_txt) + ', ' + getDateMonth(weatherItem[0].dt_txt)}}
+            {{ getWeekday(weatherItem[0].dt_txt) + ', ' + getDateMonth(weatherItem[0].dt_txt) }}
           </div>
         </div>
-        <div class="wcell headText">ощущается</div>
-        <div class="wcell headText">ветер, м/с</div>
-        <div class="wcell headText">влажность</div>
-        <div class="wcell headText">давление,<br />мм рт. ст.</div>
+        <div class="wcell headText">
+          ощущается
+        </div>
+        <div class="wcell headText">
+          ветер, м/с
+        </div>
+        <div class="wcell headText">
+          влажность
+        </div>
+        <div class="wcell headText">
+          давление,<br />мм рт. ст.
+        </div>
       </div>
-      <div class="wrow"
-           v-for="(item, index) in weatherItem"
-           :key="index"
+      <div
+        v-for="(item, itemIndex) in weatherItem"
+        :key="itemIndex"
+        class="wrow"
       >
         <div class="wcell part">
-          {{ weatherItem.length < DayParts.length ? DayParts.slice(DayParts.length - weatherItem.length)[index] : DayParts[index] }}
+          {{ weatherItem.length < DayParts.length ? DayParts.slice(DayParts.length - weatherItem.length)[itemIndex] : DayParts[itemIndex] }}
         </div>
 
         <div class="wcell tempIcon">
-          <div class="temp">{{ Math.round(item.main.temp) }}°</div>
+          <div class="temp">
+            {{ Math.round(item.main.temp) }}°
+          </div>
           <div class="icon">
             <img
-                :src="`http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`"
-                alt=""
+              :src="`http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`"
+              alt=""
             />
           </div>
         </div>
-        <div class="wcell value">{{ Math.round(item.main.feels_like) }}°</div>
         <div class="wcell value">
-          {{ Math.round(item.wind.speed)}},
-          <span class="windDirection">{{getWindDirection(item.wind.deg)}}</span>
+          {{ Math.round(item.main.feels_like) }}°
         </div>
-        <div class="wcell value">{{ item.main.humidity }}%</div>
-        <div class="wcell value">{{ item.main.pressure }}</div>
+        <div class="wcell value">
+          {{ Math.round(item.wind.speed) }},
+          <span class="windDirection">{{ getWindDirection(item.wind.deg) }}</span>
+        </div>
+        <div class="wcell value">
+          {{ item.main.humidity }}%
+        </div>
+        <div class="wcell value">
+          {{ item.main.pressure }}
+        </div>
       </div>
     </div>
-    <div class="daily__divider"></div>
+    <div class="daily__divider" />
     <div class="daily__right right">
       <div class="right__content">
         <div class="right__suntimes suntimes">
           <div class="suntimes__sunrise">
-            <span>{{sun?.sunrise}}</span>
+            <span>{{ sun?.sunrise }}</span>
             <span>Восход</span>
           </div>
           <div class="suntimes__icon">
             <VIcon
-                icon="mdi-white-balance-sunny"
-                color="#FFC023"
+              icon="mdi-white-balance-sunny"
+              color="#FFC023"
             />
           </div>
           <div class="suntimes__sunset">
-            <span>{{sun?.sunset}}</span>
+            <span>{{ sun?.sunset }}</span>
             <span>Закат</span>
           </div>
         </div>

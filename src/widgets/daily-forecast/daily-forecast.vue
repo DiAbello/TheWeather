@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { getFormattedDailyForecast } from "~/src/entities/weather/lib/forecast/get-formatted-daily-forecast";
-import DailyItem from "~/src/entities/weather/components/daily-item.vue";
-import DailyGraph from "~/src/entities/weather/components/daily-graph.vue";
+import { getFormattedDailyForecast } from '~/src/entities/weather/lib/forecast/get-formatted-daily-forecast'
+import DailyItem from '~/src/entities/weather/components/daily-item.vue'
+import DailyGraph from '~/src/entities/weather/components/daily-graph.vue'
 
 const props = defineProps<{
   dailyForecast: DailyForecast
@@ -24,11 +24,11 @@ const calcCenters = () => {
   const cRect = container.getBoundingClientRect()
 
   xCenters.value = itemRefs.value
-      .filter(Boolean)
-      .map((el) => {
-        const r = el.getBoundingClientRect()
-        return (r.left - cRect.left) + r.width / 2
-      })
+    .filter(Boolean)
+    .map(el => {
+      const r = el.getBoundingClientRect()
+      return (r.left - cRect.left) + r.width / 2
+    })
 }
 
 const recalc = async () => {
@@ -58,22 +58,25 @@ watch(formattedDailyForecast, recalc, { deep: true })
     <div class="daily__title">
       Прогноз на 5 дней
     </div>
-    <div class="daily__content" ref="contentRef">
+    <div
+      ref="contentRef"
+      class="daily__content"
+    >
       <DailyGraph
-          :dailyForecast="formattedDailyForecast"
-          :xCenters="xCenters"
-          :activeIndex="activeIndex"
+        :daily-forecast="formattedDailyForecast"
+        :x-centers="xCenters"
+        :active-index="activeIndex"
       />
       <div
-          class="daily__slot"
-          v-for="(item, index) in formattedDailyForecast"
-          :key="item.dt_txt ?? index"
-          :ref="(el) => setItemRef(el as any, index)"
+        v-for="(item, index) in formattedDailyForecast"
+        :key="item.dt_txt ?? index"
+        :ref="(el) => setItemRef(el as any, index)"
+        class="daily__slot"
       >
         <DailyItem
-            :dailyForecast="formattedDailyForecast"
-            :weatherItem="item"
-            :index="index"
+          :daily-forecast="formattedDailyForecast"
+          :weather-item="item"
+          :index="index"
         />
       </div>
     </div>

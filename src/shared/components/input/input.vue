@@ -1,18 +1,17 @@
 <script setup lang="ts">
-import { useUIStore } from "~/src/shared/components/input/store";
-import { useInputRegistry } from "~/src/shared/components/input/lib/useInputRegistry";
+import { useUIStore } from '~/src/shared/components/input/store'
+import { useInputRegistry } from '~/src/shared/components/input/lib/useInputRegistry'
 
-const UIStore = useUIStore()
+const props = defineProps<{
+  modelValue: string
+  placeholder?: string
+  icon?: string
+  id: string
+}>()
 const emit = defineEmits<{
   (e: 'update:modelValue', v: string): void
 }>()
-
-const props = defineProps<{
-  modelValue: string,
-  placeholder?: string
-  Icon?: string
-  id: string
-}>()
+const UIStore = useUIStore()
 const inputEl = ref<HTMLInputElement | null>(null)
 const { register, unregister } = useInputRegistry()
 
@@ -26,29 +25,34 @@ onUnmounted(() => {
   unregister(props.id)
 })
 defineExpose({
-  inputEl
+  inputEl,
 })
 </script>
 
 <template>
   <div class="input-area">
     <input
-        :value="modelValue"
-        placeholder=""
-        class="input"
-        ref="inputEl"
-        @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
-        @focus="UIStore.openSearch"
+      ref="inputEl"
+      :value="modelValue"
+      placeholder=""
+      class="input"
+      @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
+      @focus="UIStore.openSearch"
     />
-    <div class="placeholder" v-if="modelValue.length == 0">
-      <VIcon class="placeholder__icon" :icon="Icon"/>
+    <div
+      v-if="modelValue.length === 0"
+      class="placeholder"
+    >
+      <VIcon
+        class="placeholder__icon"
+        :icon="icon"
+      />
       <span class="placeholder__text">
         {{ placeholder }}
       </span>
     </div>
   </div>
 </template>
-
 
 <style scoped lang="scss">
 .input-area {

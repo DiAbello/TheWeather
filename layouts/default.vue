@@ -1,29 +1,33 @@
 <script setup lang="ts">
-import { useWeather } from "~/src/entities/weather/model/use-weather";
-import AppHeader from "~/src/widgets/app-header/app-header.vue";
-import AppSidebar from "~/src/widgets/app-sidebar/app-sidebar.vue";
-import { useThemeProvider } from "~/src/app/providers/theme";
+import { useWeather } from '~/src/entities/weather/model/use-weather'
+import AppHeader from '~/src/widgets/app-header/app-header.vue'
+import AppSidebar from '~/src/widgets/app-sidebar/app-sidebar.vue'
+import { useThemeProvider } from '~/src/app/providers/theme'
 
 const { name } = useThemeProvider()
 const route = useRoute()
 const { currentForecast } = useWeather()
 useHead(() => ({
   title: (
-      currentForecast?.value?.name ? `${currentForecast.value?.name}` + ' - ' + `${route.meta.title}` : 'Погода'
-  ) as string
+    currentForecast?.value?.name ? `${currentForecast.value?.name}` + ' - ' + `${route.meta.title}` : 'Погода'
+  ) as string,
 }))
 </script>
+
 <template>
-  <div class="wrapper" :data-theme="name">
+  <div
+    class="wrapper"
+    :data-theme="name"
+  >
     <VApp>
       <VMain>
-        <AppHeader/>
+        <AppHeader />
         <VContainer>
           <div class="content d-flex ga-4">
-            <AppSidebar/>
+            <AppSidebar />
             <Suspense>
               <template #default>
-                <slot/>
+                <slot />
               </template>
             </Suspense>
           </div>

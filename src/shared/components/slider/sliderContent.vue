@@ -9,18 +9,18 @@ defineProps<{
 <template>
   <div class="viewport">
     <div
-        class="content"
-        :style="{ transform: `translateX(${sliderSettings.translateX.value}px)` }"
+      class="content"
+      :style="{ transform: `translateX(${sliderSettings.translateX.value}px)` }"
     >
-      <slot/>
+      <slot />
     </div>
     <sliderButton
-        :prev="true"
-        :sliderSettings="sliderSettings"
+      prev
+      :slider-settings="sliderSettings"
     />
     <sliderButton
-        :next="true"
-        :sliderSettings="sliderSettings"
+      next
+      :slider-settings="sliderSettings"
     />
   </div>
 </template>

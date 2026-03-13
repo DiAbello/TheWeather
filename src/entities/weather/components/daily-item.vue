@@ -1,36 +1,45 @@
 <script setup lang="ts">
-import { getWeekday } from "~/src/shared/utils/date-time/get-weekday";
-import { getDate } from "~/src/shared/utils/date-time/get-date";
+import { getWeekday } from '~/src/shared/utils/date-time/get-weekday'
+import { getDate } from '~/src/shared/utils/date-time/get-date'
 
 defineProps<{
-  weatherItem: FormattedDailyForecast,
-  dailyForecast: FormattedDailyForecast[],
+  weatherItem: FormattedDailyForecast
+  dailyForecast: FormattedDailyForecast[]
   index: number
 }>()
 </script>
 
 <template>
-  <div class="daily__item item" :class="{gradient: index % 2}">
+  <div
+    class="daily__item item"
+    :class="{ gradient: index % 2 }"
+  >
     <div class="item-contrast">
-      <div class="item__weekday" :class="{weekend: getWeekday(weatherItem.dt_txt) === 'Сб' || getWeekday(weatherItem.dt_txt) === 'Вс'}">
-        {{getWeekday(weatherItem.dt_txt)}}
+      <div
+        class="item__weekday"
+        :class="{ weekend: getWeekday(weatherItem.dt_txt) === 'Сб' || getWeekday(weatherItem.dt_txt) === 'Вс' }"
+      >
+        {{ getWeekday(weatherItem.dt_txt) }}
       </div>
-      <div class="item__day" :class="{weekend: getWeekday(weatherItem.dt_txt) === 'Сб' || getWeekday(weatherItem.dt_txt) === 'Вс'}">
-        {{index === 0 ? 'Сегодня' : getDate(weatherItem.dt_txt).split('-')[2]}}
+      <div
+        class="item__day"
+        :class="{ weekend: getWeekday(weatherItem.dt_txt) === 'Сб' || getWeekday(weatherItem.dt_txt) === 'Вс' }"
+      >
+        {{ index === 0 ? 'Сегодня' : getDate(weatherItem.dt_txt).split('-')[2] }}
       </div>
       <div class="item__icon">
         <img
-            :src="(`http://openweathermap.org/img/wn/${weatherItem?.icon}@2x.png`)"
-            alt=""
-        >
+          :src="(`http://openweathermap.org/img/wn/${weatherItem?.icon}@2x.png`)"
+          alt=""
+        />
       </div>
     </div>
     <div class="item__temp">
       <div class="max">
-        {{Math.round(weatherItem.temp_max)}}°
+        {{ Math.round(weatherItem.temp_max) }}°
       </div>
       <div class="min">
-        {{Math.round(weatherItem.temp_min)}}°
+        {{ Math.round(weatherItem.temp_min) }}°
       </div>
     </div>
   </div>

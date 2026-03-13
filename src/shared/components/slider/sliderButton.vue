@@ -1,25 +1,25 @@
 <script setup lang="ts">
 defineProps<{
-  next?: boolean,
-  prev?: boolean,
+  next?: boolean
+  prev?: boolean
   sliderSettings: sliderSettings
 }>()
 </script>
 
 <template>
   <button
-      class="hourly__nav hourly__nav--left"
-      @click="sliderSettings.prev"
-      :disabled="sliderSettings.currentIndex.value === 0"
-      v-if="prev"
+    v-if="prev"
+    class="hourly__nav hourly__nav--left"
+    :disabled="sliderSettings.currentIndex.value === 0"
+    @click="sliderSettings.prev"
   >
     ‹
   </button>
   <button
-      v-if="next"
-      class="hourly__nav hourly__nav--right"
-      @click="sliderSettings.next"
-      :disabled="sliderSettings.currentIndex.value >= sliderSettings.maxIndex.value"
+    v-if="next"
+    class="hourly__nav hourly__nav--right"
+    :disabled="sliderSettings.currentIndex.value >= sliderSettings.maxIndex.value"
+    @click="sliderSettings.next"
   >
     ›
   </button>

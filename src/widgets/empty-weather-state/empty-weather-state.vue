@@ -1,5 +1,3 @@
-<script setup lang="ts">
-</script>
 <template>
   <div class="weather-empty">
     <div class="weather-empty__content">
@@ -70,5 +68,4 @@
     }
   }
 }
-
 </style>

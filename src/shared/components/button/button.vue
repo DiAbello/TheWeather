@@ -1,19 +1,19 @@
-<template>
-  <button
-      class="button d-flex align-center"
-      type="button"
-      :style="{ minWidth: `${minWidth}px`, maxWidth: maxWidth ? `${maxWidth}px` : ''}"
-  >
-    <slot></slot>
-  </button>
-</template>
-
 <script setup lang="ts">
 defineProps<{
-  minWidth?: number,
-  maxWidth?: number,
+  minWidth?: number
+  maxWidth?: number
 }>()
 </script>
+
+<template>
+  <button
+    class="button d-flex align-center"
+    type="button"
+    :style="{ minWidth: `${minWidth}px`, maxWidth: maxWidth ? `${maxWidth}px` : '' }"
+  >
+    <slot />
+  </button>
+</template>
 
 <style scoped lang="scss">
 .button {

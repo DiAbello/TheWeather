@@ -1,23 +1,25 @@
 <script setup lang="ts">
-import { useLocation } from "~/src/entities/location/model/use-location";
-import { useWeather } from "~/src/entities/weather/model/use-weather";
-import EmptyWeatherState from "~/src/widgets/empty-weather-state/empty-weather-state.vue";
-import DailyForecastDetails from "~/src/widgets/daily-forecast-details/daily-forecast-details.vue";
+import { useLocation } from '~/src/entities/location/model/use-location'
+import { useWeather } from '~/src/entities/weather/model/use-weather'
+import EmptyWeatherState from '~/src/widgets/empty-weather-state/empty-weather-state.vue'
+import DailyForecastDetails from '~/src/widgets/daily-forecast-details/daily-forecast-details.vue'
 
 const { dailyForecast } = useWeather()
 const { location } = useLocation()
-
 </script>
 
 <template>
   <div class="daily">
-    <EmptyWeatherState v-if="!location"/>
-    <div class="daily__header" v-else>
+    <EmptyWeatherState v-if="!location" />
+    <div
+      v-else
+      class="daily__header"
+    >
       Погода на 5 дней
     </div>
     <DailyForecastDetails
-        v-if="dailyForecast"
-        :dailyForecast="dailyForecast"
+      v-if="dailyForecast"
+      :daily-forecast="dailyForecast"
     />
   </div>
 </template>

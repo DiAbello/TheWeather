@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { getFormattedDeepDailyForecast } from "~/src/entities/weather/lib/forecast/get-formatted-deep-daily-forecast";
-import DailyDeepItem from "~/src/entities/weather/components/daily-deep-item.vue";
+import { getFormattedDeepDailyForecast } from '~/src/entities/weather/lib/forecast/get-formatted-deep-daily-forecast'
+import DailyDeepItem from '~/src/entities/weather/components/daily-deep-item.vue'
 
 const props = defineProps<{
   dailyForecast: DailyForecast
@@ -11,11 +11,11 @@ const formattedDeepDailyForecast = computed(() => getFormattedDeepDailyForecast(
 <template>
   <div class="daily__content">
     <DailyDeepItem
-        v-for="(item, index) in formattedDeepDailyForecast?.list"
-        :key="index"
-        :index="index"
-        :weatherItem="item"
-        :dailyForecast="formattedDeepDailyForecast"
+      v-for="(item, index) in formattedDeepDailyForecast?.list"
+      :key="index"
+      :index="index"
+      :weather-item="item"
+      :daily-forecast="formattedDeepDailyForecast"
     />
   </div>
 </template>

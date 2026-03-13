@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import SliderContent from "~/src/shared/components/slider/sliderContent.vue";
-import HourlyItem from "~/src/entities/weather/components/hourly-item.vue";
-import { useHorizontalSlider } from "~/src/shared/lib/useHorizontalSlider/useHorizontalSlider";
-import { getFormattedHourlyForecast } from "~/src/entities/weather/lib/forecast/get-formatted-hourly-forecast";
+import SliderContent from '~/src/shared/components/slider/sliderContent.vue'
+import HourlyItem from '~/src/entities/weather/components/hourly-item.vue'
+import { useHorizontalSlider } from '~/src/shared/lib/useHorizontalSlider/useHorizontalSlider'
+import { getFormattedHourlyForecast } from '~/src/entities/weather/lib/forecast/get-formatted-hourly-forecast'
 
 const props = defineProps<{
   dailyForecast: DailyForecast
@@ -11,21 +11,21 @@ const formattedHourlyForecast = computed(() => getFormattedHourlyForecast(props.
 const slider = useHorizontalSlider({
   itemWidth: 61,
   itemsPerPage: 3,
-  totalItems: formattedHourlyForecast.value?.list.length ?? 0
+  totalItems: formattedHourlyForecast.value?.list.length ?? 0,
 })
 </script>
 
 <template>
   <div class="hourly">
     <SliderContent
-        :sliderSettings="slider"
+      :slider-settings="slider"
     >
       <HourlyItem
-          v-for="(item, index) in formattedHourlyForecast?.list"
-          :key="index"
-          :weather-item="item"
-          :hourly-forecast="formattedHourlyForecast"
-          :index="index"
+        v-for="(item, index) in formattedHourlyForecast?.list"
+        :key="index"
+        :weather-item="item"
+        :hourly-forecast="formattedHourlyForecast"
+        :index="index"
       />
     </SliderContent>
   </div>

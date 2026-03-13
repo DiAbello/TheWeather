@@ -1,53 +1,59 @@
-import vuetify, {transformAssetUrls} from 'vite-plugin-vuetify'
+import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 export default defineNuxtConfig({
-    app: {
-        head: {
-            link: [
-                { rel: 'icon', type: 'image/png', href: '/favicon.png', sizes: '512x512' },
-                { rel: 'icon', type: 'image/png', href: '/favicon-32.png', sizes: '32x32' },
-            ],
-        },
+
+  modules: [
+    (_options, nuxt) => {
+      nuxt.hooks.hook('vite:extendConfig', config => {
+        // @ts-expect-error vuetify plugin typing is incompatible with vite plugin array
+        config.plugins.push(vuetify({ autoImport: true }))
+      })
     },
-    compatibilityDate: '2024-11-01',
-    css: [
-        '@/assets/css/_nullstyle.css',
-        '@/assets/css/base.css'
+    '@pinia/nuxt',
+    '@nuxt/eslint',
+  ],
+  imports: {
+    dirs: [
+      'composables',
+      'composables/**',
+      'utils',
+      'utils/**',
     ],
-    devtools: {enabled: true},
-    pinia: {
-        storesDirs: ['./stores/**']
+  },
+  devtools: { enabled: true }, app: {
+    head: {
+      link: [
+        { rel: 'icon', type: 'image/png', href: '/favicon.png', sizes: '512x512' },
+        { rel: 'icon', type: 'image/png', href: '/favicon-32.png', sizes: '32x32' },
+      ],
     },
-    build: {
-        transpile: ['vuetify'],
+  },
+  css: [
+    '@/assets/css/_nullstyle.css',
+    '@/assets/css/base.css',
+  ],
+  runtimeConfig: {
+    public: {
+      apiKey: process.env.NUXT_PUBLIC_API_KEY,
     },
-    imports: {
-        dirs: [
-            'composables',
-            'composables/**',
-            'utils',
-            'utils/**'
-        ]
+  },
+  build: {
+    transpile: ['vuetify'],
+  },
+  compatibilityDate: '2024-11-01',
+  vite: {
+    vue: {
+      template: {
+        transformAssetUrls,
+      },
     },
-    modules: [
-        (_options, nuxt) => {
-            nuxt.hooks.hook('vite:extendConfig', (config) => {
-                // @ts-expect-error
-                config.plugins.push(vuetify({autoImport: true}))
-            })
-        },
-        "@pinia/nuxt"
-    ],
-    runtimeConfig: {
-        public: {
-            apiKey: process.env.NUXT_PUBLIC_API_KEY
-        }
+  },
+  eslint: {
+    config: {
+      stylistic: true,
     },
-    vite: {
-        vue: {
-            template: {
-                transformAssetUrls,
-            },
-        },
-    },
+  },
+  pinia: {
+    storesDirs: ['./stores/**'],
+  },
 })
